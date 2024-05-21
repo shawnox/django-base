@@ -1,0 +1,7 @@
+# top-most EditorConfig file
+root = true
+
+# make indentation spaces in yml files
+[*.yml]
+indent_style = space
+indent_size = 2

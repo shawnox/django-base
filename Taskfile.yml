@@ -1,0 +1,40 @@
+version: "3"
+
+tasks:
+  runserver:
+    cmds:
+      - poetry run python -m core.manage runserver
+
+  install:
+    cmds:
+      - poetry install
+
+  migrate:
+    cmds:
+      - poetry run python -m core.manage migrate
+
+  makemigrations:
+    cmds:
+      - poetry run python -m core.manage makemigrations
+
+  createsuperuser:
+    cmds:
+      - poetry run python -m core.manage createsuperuser
+
+  shell:
+    cmds:
+      - poetry run python -m core.manage shell
+
+  install-pre-commit:
+    cmds:
+      - poetry run pre-commit uninstall
+      - poetry run pre-commit install
+
+  lint:
+    cmds:
+      - poetry run pre-commit run --all-files
+
+  up-dependencies-only:
+    cmds:
+      - test -f .env || touch .env
+      - docker-compose -f docker-compose.dev.yml up --force-recreate db
